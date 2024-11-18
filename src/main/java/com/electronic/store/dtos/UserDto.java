@@ -1,10 +1,12 @@
 package com.electronic.store.dtos;
 
 import jakarta.persistence.Column;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+
 import lombok.*;
 
 
@@ -17,6 +19,7 @@ public class UserDto {
 
     private String imageName;
     private String userId;
+
 
     @Size(min = 3, max = 15, message = "Invalid Name !!")
     private String name;
@@ -36,5 +39,13 @@ public class UserDto {
     //@Pattern
 
     //Custom Validator
+
+
+    private String name;
+    private String email;
+    private String password;
+    private String gender;
+    private String about;
+
 
 }

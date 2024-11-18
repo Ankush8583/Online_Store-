@@ -4,7 +4,9 @@ package com.electronic.store.controller;
 import com.electronic.store.dtos.ApiResponseMessage;
 import com.electronic.store.dtos.UserDto;
 import com.electronic.store.services.UserService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,11 @@ public class UserController {
 
     //create
     @PostMapping
+
       public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
+
+      public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+
 
           UserDto userDto1 = userService.craeteUser(userDto);
            return new ResponseEntity<>(userDto1, HttpStatus.CREATED);
@@ -32,7 +38,11 @@ public class UserController {
     //update
 
     @PutMapping("/{userId}")
+
       public ResponseEntity<UserDto> updateUser(@Valid @PathVariable("userId") String userId, @RequestBody UserDto userDto){
+
+      public ResponseEntity<UserDto> updateUser(@PathVariable("userId") String userId, @RequestBody UserDto userDto){
+
 
         UserDto updateUserDto=userService.updateUser(userDto, userId);
 
@@ -61,7 +71,11 @@ public class UserController {
     //get by email
 
         @GetMapping("/email/{email}")
+
         public ResponseEntity<UserDto> getUserByEmail(@Valid @PathVariable String email){
+
+        public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email){
+
 
          return new ResponseEntity<>(userService.getUserByEmail(email),HttpStatus.OK);
         }
