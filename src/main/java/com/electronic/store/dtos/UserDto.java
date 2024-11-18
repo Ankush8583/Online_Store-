@@ -41,11 +41,7 @@ public class UserDto {
     //Custom Validator
 
 
-    private String name;
-    private String email;
-    private String password;
-    private String gender;
-    private String about;
+   
 
 
 }
