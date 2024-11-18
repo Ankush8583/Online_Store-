@@ -27,7 +27,6 @@ public class UserController {
 
       public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
 
-      public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
 
 
           UserDto userDto1 = userService.craeteUser(userDto);
@@ -41,7 +40,6 @@ public class UserController {
 
       public ResponseEntity<UserDto> updateUser(@Valid @PathVariable("userId") String userId, @RequestBody UserDto userDto){
 
-      public ResponseEntity<UserDto> updateUser(@PathVariable("userId") String userId, @RequestBody UserDto userDto){
 
 
         UserDto updateUserDto=userService.updateUser(userDto, userId);
@@ -73,9 +71,6 @@ public class UserController {
         @GetMapping("/email/{email}")
 
         public ResponseEntity<UserDto> getUserByEmail(@Valid @PathVariable String email){
-
-        public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email){
-
 
          return new ResponseEntity<>(userService.getUserByEmail(email),HttpStatus.OK);
         }
