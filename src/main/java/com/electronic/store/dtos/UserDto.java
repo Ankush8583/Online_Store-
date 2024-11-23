@@ -1,5 +1,6 @@
 package com.electronic.store.dtos;
 
+import com.electronic.store.validation.AboutValid;
 import jakarta.persistence.Column;
 
 import jakarta.validation.constraints.Email;
@@ -34,6 +35,8 @@ public class UserDto {
 
     @Size(min = 4, max = 6, message = "Invalid gender !!")
     private String gender;
+
+    @AboutValid
     private String about;
 
     //@Pattern
