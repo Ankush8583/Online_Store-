@@ -2,6 +2,7 @@ package com.electronic.store.services.Impl;
 
 import com.electronic.store.dtos.UserDto;
 import com.electronic.store.entities.User;
+import com.electronic.store.exceptions.ResourceNotFoundException;
 import com.electronic.store.repositories.UserRepository;
 import com.electronic.store.services.UserService;
 import lombok.Builder;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto updateUser(UserDto userDto, String userId) {
 
-         User user= userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found with given id"));
+         User user= userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with given id"));
          user.setName(userDto.getName());
          user.setAbout(userDto.getAbout());
          user.setImageName(userDto.getImageName());
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String userId) {
 
-       User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found with given id"));
+       User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with given id"));
 
         userRepository.delete(user);
     }
@@ -83,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserByEmail(String email) {
-        User user= userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not present with given email !!"));
+        User user= userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not present with given email !!"));
         return entityToDto(user);
     }
 
