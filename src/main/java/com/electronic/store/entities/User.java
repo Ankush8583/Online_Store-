@@ -1,6 +1,10 @@
 package com.electronic.store.entities;
 
 
+import java.util.Collection;
+
+import com.electronic.store.dtos.UserDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -37,6 +41,11 @@ public class User {
 
     @Column(name = "user_image_name")
     private String imageName;
+
+    public static Collection<UserDto> getContent() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getContent'");
+    }
 
 
 

@@ -1,9 +1,12 @@
 package com.electronic.store.services;
 
+import com.electronic.store.dtos.PageableResponse;
 import com.electronic.store.dtos.UserDto;
 import com.electronic.store.entities.User;
 
 import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
@@ -23,7 +26,7 @@ public interface UserService {
 
     //get all user
 
-     List<UserDto> getAllUser();
+     PageableResponse<UserDto> getAllUser(int pageNumber, int pageSize);
 
     //get single user by email
 

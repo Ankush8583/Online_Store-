@@ -2,6 +2,7 @@ package com.electronic.store.controller;
 
 
 import com.electronic.store.dtos.ApiResponseMessage;
+import com.electronic.store.dtos.PageableResponse;
 import com.electronic.store.dtos.UserDto;
 import com.electronic.store.services.UserService;
 
@@ -9,6 +10,8 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,9 +64,12 @@ public class UserController {
     //get all
 
      @GetMapping
-     public ResponseEntity<List <UserDto>> getAllUsers(){
+     public ResponseEntity<PageableResponse <UserDto>> getAllUsers(@RequestParam(value = "pageNumber", defaultValue = "0",required = false) int pageNumber,
+                                                            @RequestParam(value = "pageSize", defaultValue = "3",required = false) int pageSize){
 
-        return new ResponseEntity<>(userService.getAllUser(),HttpStatus.OK);
+         //     Pageable pageable = PageRequest.of(page, size);
+
+        return new ResponseEntity<>(userService.getAllUser(pageNumber, pageSize),HttpStatus.OK);
      }
 
     //get by email

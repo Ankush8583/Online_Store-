@@ -1,14 +1,18 @@
 package com.electronic.store.services.Impl;
 
+import com.electronic.store.dtos.PageableResponse;
 import com.electronic.store.dtos.UserDto;
 import com.electronic.store.entities.User;
 import com.electronic.store.exceptions.ResourceNotFoundException;
+import com.electronic.store.helper.Helper;
 import com.electronic.store.repositories.UserRepository;
 import com.electronic.store.services.UserService;
 import lombok.Builder;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 
@@ -75,11 +79,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUser() {
+    public PageableResponse<UserDto> getAllUser(int pageNumber, int pageSize) {
 
-        List<User> users =  userRepository.findAll();
-         List<UserDto> dtoList=users.stream().map(user -> entityToDto(user)).collect(Collectors.toList());
-        return dtoList;
+
+         Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        org.springframework.data.domain.Page<User> page = userRepository.findAll(pageable);
+                               
+      //   List<UserDto> dtoList=users.getContent().stream().map(user -> entityToDto(user)).collect(Collectors.toList());
+        
+        //   PageableResponse<UserDto> response = new PageableResponse<>();
+        //   response.setContent(dtoList);
+        //   response.setPageNumber(users.getNumber());
+        //   response.setPageSize(users.getSize());
+        //   response.setTotalElement(users.getTotalElements());
+        //   response.setTotalPages(users.getTotalPages());
+        //   response.setLastPage(users.isLast());
+
+       PageableResponse<UserDto> response= Helper.getPageableResponse(page, UserDto.class);
+
+        return response;
     }
 
     @Override
