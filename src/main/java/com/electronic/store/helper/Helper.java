@@ -3,12 +3,13 @@ package com.electronic.store.helper;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.electronic.store.dtos.CategoriesDto;
 import org.hibernate.query.Page;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 
 import com.electronic.store.dtos.PageableResponse;
 import com.electronic.store.dtos.UserDto;
+import org.springframework.data.domain.Pageable;
 
 public class Helper {
 
@@ -29,5 +30,6 @@ public class Helper {
           return response;
 
     }
-    
+
+
 }
