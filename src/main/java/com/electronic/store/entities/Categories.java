@@ -1,10 +1,12 @@
 package com.electronic.store.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,6 +14,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
+
 public class Categories {
 
     @Id
@@ -23,5 +27,8 @@ public class Categories {
 
     @Column(name = "category_description",length = 60)
     private  String description;
+
+    @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Product> products = new ArrayList<>();
 
 }
